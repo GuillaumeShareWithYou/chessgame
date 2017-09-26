@@ -9,7 +9,7 @@ public class Plateau extends Observable{
     private Piece plateau[][];
     private Joueur j1;
     private Joueur j2;
-    private String info = new String();
+    private Info info = Info.DEBUT_DE_PARTIE;
     private Point pointClique;
     private Model model;
   
@@ -96,12 +96,12 @@ public class Plateau extends Observable{
             
             if(this.getEtatPlateau(i, j)==null) // clic sur case vide
             {
-                setInfo("Aucune pièce à cet endroit");
+               // setInfo("Aucune pi�ce � cet endroit");
                 error = true;
             }else if(this.getEtatPlateau(i,j).getJoueur()!=joueurCourant)
             {
                 
-                setInfo("Cet pièce n'est pas à vous !");
+                setInfo(Info.PIECE_INTERDITE);
                 error = true;
             }
             
@@ -110,13 +110,13 @@ public class Plateau extends Observable{
                 
                 coupCourant.setDepart(temp);
                 setPointClique(coupCourant.dep);
-                setInfo("...");
+                //setInfo("...");
                 
             }
             
         }else if(coupCourant.dep.equals(temp)) {
             //clic sur la même case deux fois pour annuler le coup
-            setInfo("Coup annulé");
+            setInfo(Info.COUP_ANNULE);
             setPointClique(null);
             coupCourant.effacer();
         }else{
@@ -130,12 +130,12 @@ public class Plateau extends Observable{
                 coupCourant.setDepart(temp);
                 setPointClique(temp);
                 error = true;
-                setInfo("Changement de pièce");
+                setInfo(Info.CHANGEMENT_PIECE);
             }
             if(!error && appliquerCoup(coupCourant))
             {
                 
-                setInfo("Coup réussi");
+                setInfo(Info.COUP_REUSSI);
                 coupCourant.effacer();
                 setPointClique(null);
                 return true;
@@ -159,7 +159,7 @@ public class Plateau extends Observable{
                 // On vérifie si un roi a été mangé
                 if(fin.getType().equals("roi"))
                 {
-                    setInfo("fin de partie "+fin.getJoueur()+" a gagné");
+                    setInfo(Info.FIN_DE_PARTIE);
                     setFinDePartie(true);
                 }
                 //mettre a jour le score :
@@ -175,7 +175,7 @@ public class Plateau extends Observable{
             
             return true;
         }
-        setInfo("deplacement impossible");
+        setInfo(Info.DEPLACEMENT_IMPOSSIBLE);
         return false;
         
         
@@ -192,7 +192,7 @@ public class Plateau extends Observable{
     }
     public String getInfo()
     {
-        return this.info;
+        return this.info.toString();
     }
     public void setPointClique(Point p)
     {
@@ -208,7 +208,7 @@ public class Plateau extends Observable{
      * permet de changer le msg d'info et de notifier le labelInfo
      * @param msg msg à envoyer
      */
-    public void setInfo(String msg)
+    public void setInfo(Info msg)
     {
         this.info = msg;
         this.labelInfo.update(this, this);

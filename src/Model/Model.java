@@ -62,6 +62,9 @@ public class Model extends Observable {
             {
                 joueurCourant = getJoueurSuivant();
                 this.minuteur.reset();
+            }else {
+            	this.minuteur.stop();
+            	
             }
             
             return true;

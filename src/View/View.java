@@ -56,7 +56,7 @@ public class View extends Application implements Observer{
     private   Button btnNP1J = new Button("Nouvelle Partie 1 Joueur");
     private   Button btnNP2J = new Button("Nouvelle Partie 2 Joueurs");
     private   Button btnQ = new Button("Quitter");
-    private    Button btnI = new Button("Se prÃ©senter");
+    private    Button btnI = new Button("Se présenter");
     private   Button btnContinuer = new Button("Continuer");
     private   Button btnRetour = new Button("Retour au Menu");
     private    LabelInfo info;
@@ -82,7 +82,7 @@ public class View extends Application implements Observer{
         stage.setMinHeight(HAUTEUR_F);
         stage.setTitle("Jeu d'echec");
         stage.setResizable(false);// sinon ca peut Ãªtre vraiment horrible
-        
+        stage.setOnCloseRequest((WindowEvent e)->System.exit(0));
         scene = new Scene(new Group());
         setScene();
         stage.setScene(this.getScene());
@@ -147,7 +147,7 @@ public class View extends Application implements Observer{
         {
             VBox vboxI = new VBox();
             GridPane form = new GridPane();
-            Label lb = new Label("Qui Ãªtes vous ?");
+            Label lb = new Label("Qui êtes vous ?");
             lb.setStyle("-fx-text-fill : blue;"+"-fx-padding : 30;");
             lb.setFont(Font.font("Constantia", FontWeight.EXTRA_BOLD, 50));
             
@@ -238,7 +238,7 @@ public class View extends Application implements Observer{
         }else if(model.getAffichage() == Affichage.FIN_DE_PARTIE)
         {
             BorderPane bpFin = new BorderPane();
-            Label gagnant = new Label(model.getNomJoueurCourant()+" a gagnÃ© avec un score de "+model.getJoueurCourant().getScore()+" points");
+            Label gagnant = new Label(model.getNomJoueurCourant()+" a gagné avec un score de "+model.getJoueurCourant().getScore()+" points");
             gagnant.setFont(Font.font("Constantia", FontWeight.BOLD, 35));
             btnContinuer.setStyle(style);
             btnContinuer.setDefaultButton(true);
@@ -274,7 +274,7 @@ public class View extends Application implements Observer{
         ljoueur.setTextFill(Color.rgb(0,43,126));
         Label score1 = new Label("Score = "+model.getJoueur1().getScore());
         score1.setFont(Font.font("System", FontWeight.BOLD, 20));
-        Label couleur1 = new Label("Ã©quipe blanche");
+        Label couleur1 = new Label("équipe blanche");
         couleur1.setFont(Font.font("System", FontWeight.BOLD, 20));
         vJ1.getChildren().add(ljoueur);
         vJ1.getChildren().add(score1);
@@ -286,7 +286,7 @@ public class View extends Application implements Observer{
         ljoueur2.setTextFill(Color.rgb(0,43,126));
         Label score2 = new Label("Score = "+model.getJoueur2().getScore());
         score2.setFont(Font.font("System", FontWeight.BOLD, 20));
-        Label couleur2 = new Label("Ã©quipe noire");
+        Label couleur2 = new Label("équipe noire");
         couleur2.setFont(Font.font("System", FontWeight.BOLD, 20));
         
         vJ2.getChildren().add(ljoueur2);
@@ -380,11 +380,13 @@ public class View extends Application implements Observer{
     @Override
     public void update(Observable o, Object o1) {
         
-        Platform.runLater(new Runnable(){  @Override
-        public void run() {
-            setScene();
-        }
-        });
+//        Platform.runLater(new Runnable(){  @Override
+//        public void run() {
+//            setScene();
+//        }
+//        });
+        
+        Platform.runLater(()->setScene());
     }
     
     

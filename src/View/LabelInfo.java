@@ -1,17 +1,14 @@
 
 package View;
 
-import Model.Affichage;
-import Model.Model;
-import Model.Plateau;
 import java.util.Observable;
 import java.util.Observer;
-import javafx.application.Platform;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
+import Model.Info;
+import Model.Model;
+import Model.Plateau;
+import javafx.application.Platform;
+import javafx.scene.control.Label;;
 
 public class LabelInfo extends Label implements Observer {
     private   Model m;
@@ -34,7 +31,7 @@ public class LabelInfo extends Label implements Observer {
         Platform.runLater(new Runnable(){  @Override
         public void run() {
             myLabel.setText(p.getInfo());
-            if(myLabel.getText()=="Coup réussi")
+            if(myLabel.getText()==Info.COUP_REUSSI.toString())
             {
                 myLabel.setStyle("-fx-text-fill : green;");
             }else{

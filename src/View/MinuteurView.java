@@ -36,9 +36,12 @@ public class MinuteurView extends Label implements Observer {
             @Override
             public void run() {
                 myLabel.setText(tempsRestant.toString());
-                if(minuteur.isLow())
+                if(minuteur.isSuperLow())
                 {
-                    myLabel.setStyle("-fx-text-fill : red");
+                	 myLabel.setStyle("-fx-text-fill : red");
+                }else if(minuteur.isLow())
+                {
+                    myLabel.setStyle("-fx-text-fill : orange");
                 }else{
                     myLabel.setStyle("-fx-text-fill : darkblue");
                 }

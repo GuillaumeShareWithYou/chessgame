@@ -26,13 +26,15 @@ public class Minuteur extends Thread {
     */
     
     //Durée d'un tour
-    int minuteMax = 1;
-    int secMax = 00;
+    int minuteMax = 0;
+    int secMax = 30;
     
     //Changement de couleur du miniteur lorsque temps inférieur à
     int minuteLow = 0;
-    int secLow = 20;
+    int secLow = 50;
     
+    int minuteSuperLow = 0;
+    int secSuperLow = 20;
     
     
     public Minuteur(Model _m){
@@ -58,7 +60,7 @@ public class Minuteur extends Thread {
                     
                     this.reset();
                     this.m.getJoueurSuivant();
-                    this.m.getPlateau().setInfo("Temps écoulé");
+                    this.m.getPlateau().setInfo(Info.TEMPS_ECOULE);
                 }
                 this.MinView.update(m, m);
                 
@@ -94,6 +96,14 @@ public class Minuteur extends Thread {
     public boolean isLow()
     {
         if(chrono.lessThan(minuteLow,secLow))
+        {
+            return true;
+        }
+        return false;
+    }
+    public boolean isSuperLow()
+    {
+        if(chrono.lessThan(minuteSuperLow,secSuperLow))
         {
             return true;
         }

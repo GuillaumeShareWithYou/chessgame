@@ -34,12 +34,14 @@ public class MenuController implements EventHandler<ActionEvent> {
         btnI.setOnAction(this);
         btnNP1J.setOnAction(this);
         btnNP2J.setOnAction(this);
-        v.getBtnQ().setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event) {
-                System.exit(0);
-            }
-        });
+//        v.getBtnQ().setOnAction(new EventHandler<ActionEvent>(){
+//            @Override
+//            public void handle(ActionEvent event) {
+//                System.exit(0);
+//            }
+//        });
+        
+       v.getBtnQ().setOnAction((ActionEvent event)->System.exit(0));
         
     }
     
