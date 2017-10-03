@@ -12,6 +12,9 @@ public class Pion extends Piece {
         this.premierCoup = true;
         this.value = 10;
     }
+    public void consommerPremierCoup() {
+    	this.premierCoup = false;
+    }
     public boolean coupPossible(Plateau p, Coup c)
     {
         boolean depl = false;
@@ -69,7 +72,7 @@ public class Pion extends Piece {
                 }
             }
         }
-        if(depl) this.premierCoup = false;
+       // if(depl) this.premierCoup = false;
         return depl;
     }
     

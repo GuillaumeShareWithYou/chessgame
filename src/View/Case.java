@@ -7,14 +7,11 @@ package View;
 
 
 
-import java.awt.Event;
 import java.awt.Image;
-import javafx.event.ActionEvent;
+
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
@@ -23,32 +20,64 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 
 public class Case extends Button implements EventHandler<MouseEvent>{
   private  Image img;
   private  boolean selectionnee;
+  private boolean atteignable;
+  private boolean mangeable;
+  private boolean isCheckMate;
+  public boolean isCheckMate() {
+	return isCheckMate;
+}
+
+
+
+public void setCheckMate(boolean isCheckMate) {
+	this.isCheckMate = isCheckMate;
+}
+
+
+
+public boolean isMangeable() {
+	return mangeable;
+}
+
+
+
+public void setMangeable(boolean mangeable) {
+	this.mangeable = mangeable;
+}
+private int color;
     public Case(int color)
     {
         setSelection(false);
         this.setOpacity(0.90);
         this.setPrefSize(75,75);
         this.setCursor(Cursor.HAND);
-        if(color%2==0)
-        { this.setStyle("-fx-background-color : white");
-        
-        }else{
-            this.setStyle("-fx-background-color : rgb(0,0,160)");
-            
-        }
+        this.color = color;
+        this.mettreCouleurNaturelle();
         this.setOnMouseEntered(this);
         this.setOnMouseExited(this);
     }
     
     
     
-    /**
+    public void mettreCouleurNaturelle() {
+    	  if(color%2==0)
+          { this.setStyle("-fx-background-color : white");
+          
+          }else{
+              this.setStyle("-fx-background-color : rgb(0,0,160)");
+              
+          }
+		
+	}
+
+
+
+	/**
      * Fonction permettant de définir le fichier .png à charger pour chaque case de l'échiquier
      * d'où les variables type et couleur dans Piece
      * @param type type de la piece
@@ -84,21 +113,22 @@ public class Case extends Button implements EventHandler<MouseEvent>{
             if(MouseEvent.MOUSE_ENTERED == event.getEventType())
             {
                 this.setOpacity(1.0);
-                if(!estSelectionnee())
+                if(!estSelectionnee() && !this.isAtteignable() &&!this.isMangeable() &&!this.isCheckMate())
                 {
                     this.setBorder(new Border(new BorderStroke(Color.BLACK,
                             BorderStrokeStyle.SOLID,new CornerRadii(0),
-                            new BorderWidths(4))));
+                            new BorderWidths(3))));
                 }
                 
             }
             // Quand elle sort , on enlève la bordure
             else if(MouseEvent.MOUSE_EXITED == event.getEventType())
             {
-                if(!estSelectionnee())
+            	 this.setOpacity(0.90);
+                if(!estSelectionnee() && !this.isAtteignable() &&!this.isMangeable() && !this.isCheckMate())
                 {
                     this.setBorder(null);
-                    this.setOpacity(0.90);
+                   
                 }
                  
                 
@@ -108,6 +138,13 @@ public class Case extends Button implements EventHandler<MouseEvent>{
     public void setSelection(boolean b)
     {
         this.selectionnee = b;
+    }
+    public boolean isAtteignable() {
+    	return this.atteignable;
+    }
+    public void setAtteignable(boolean v)
+    {
+    	this.atteignable = v;
     }
     public boolean estSelectionnee()
     {

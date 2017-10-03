@@ -4,18 +4,16 @@
 * and open the template in the editor.
 */
 package View;
-import Controller.Controller;
-import Model.*;
-
-
 import java.util.Observable;
 import java.util.Observer;
+
+import Controller.Controller;
+import Model.Affichage;
+import Model.Model;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -23,8 +21,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
@@ -56,7 +52,7 @@ public class View extends Application implements Observer{
     private   Button btnNP1J = new Button("Nouvelle Partie 1 Joueur");
     private   Button btnNP2J = new Button("Nouvelle Partie 2 Joueurs");
     private   Button btnQ = new Button("Quitter");
-    private    Button btnI = new Button("Se présenter");
+    private Button btnI = new Button("Se prï¿½senter");
     private   Button btnContinuer = new Button("Continuer");
     private   Button btnRetour = new Button("Retour au Menu");
     private    LabelInfo info;
@@ -71,7 +67,7 @@ public class View extends Application implements Observer{
         this.model = new Model();
         this.echiquier =  new Echiquier(model);
         this.info = new LabelInfo(model);
-        new Controller(this, model);        
+        new Controller(this, model);
     }
     
     
@@ -147,7 +143,7 @@ public class View extends Application implements Observer{
         {
             VBox vboxI = new VBox();
             GridPane form = new GridPane();
-            Label lb = new Label("Qui êtes vous ?");
+            Label lb = new Label("Qui Ãªtes vous ?");
             lb.setStyle("-fx-text-fill : blue;"+"-fx-padding : 30;");
             lb.setFont(Font.font("Constantia", FontWeight.EXTRA_BOLD, 50));
             
@@ -238,7 +234,7 @@ public class View extends Application implements Observer{
         }else if(model.getAffichage() == Affichage.FIN_DE_PARTIE)
         {
             BorderPane bpFin = new BorderPane();
-            Label gagnant = new Label(model.getNomJoueurCourant()+" a gagné avec un score de "+model.getJoueurCourant().getScore()+" points");
+            Label gagnant = new Label(model.getNomJoueurCourant()+" a gagnï¿½ avec un score de "+model.getJoueurCourant().getScore()+" points");
             gagnant.setFont(Font.font("Constantia", FontWeight.BOLD, 35));
             btnContinuer.setStyle(style);
             btnContinuer.setDefaultButton(true);
@@ -274,7 +270,7 @@ public class View extends Application implements Observer{
         ljoueur.setTextFill(Color.rgb(0,43,126));
         Label score1 = new Label("Score = "+model.getJoueur1().getScore());
         score1.setFont(Font.font("System", FontWeight.BOLD, 20));
-        Label couleur1 = new Label("équipe blanche");
+        Label couleur1 = new Label("ï¿½quipe blanche");
         couleur1.setFont(Font.font("System", FontWeight.BOLD, 20));
         vJ1.getChildren().add(ljoueur);
         vJ1.getChildren().add(score1);
@@ -286,7 +282,7 @@ public class View extends Application implements Observer{
         ljoueur2.setTextFill(Color.rgb(0,43,126));
         Label score2 = new Label("Score = "+model.getJoueur2().getScore());
         score2.setFont(Font.font("System", FontWeight.BOLD, 20));
-        Label couleur2 = new Label("équipe noire");
+        Label couleur2 = new Label("ï¿½quipe noire");
         couleur2.setFont(Font.font("System", FontWeight.BOLD, 20));
         
         vJ2.getChildren().add(ljoueur2);

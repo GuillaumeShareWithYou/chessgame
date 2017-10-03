@@ -152,6 +152,14 @@ public class Model extends Observable {
         notifyObservers();
         return joueurCourant;
     }
+    public Joueur getJoueurAdverse() {
+    	if(joueurCourant==joueur1)
+        {
+            return joueur2;
+        }else{
+            return joueur1;
+        }
+    }
     /**
      * retoure la piece à la position (i,j)
      * @param i
@@ -190,6 +198,7 @@ public class Model extends Observable {
     {
         return this.joueurCourant;
     }
+    
     public String getNomJoueur1()
     {
         return this.joueur1.getNom();

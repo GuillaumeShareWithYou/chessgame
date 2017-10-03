@@ -41,7 +41,7 @@ public class MenuController implements EventHandler<ActionEvent> {
 //            }
 //        });
         
-       v.getBtnQ().setOnAction((ActionEvent event)->System.exit(0));
+       v.getBtnQ().setOnAction((event)->System.exit(0));
         
     }
     

@@ -5,7 +5,7 @@ public enum Info {
 	COUP_REUSSI("Coup réussi, changement de joueur"),
 	DEPLACEMENT_IMPOSSIBLE("deplacement impossible"),
 	CHANGEMENT_PIECE("Changement de pièce"),
-	 COUP_ANNULE("Coup annulé"), PIECE_INTERDITE("Cet pièce n'est pas à  vous !"), FIN_DE_PARTIE("la partie est terminée"), TEMPS_ECOULE("Temps écoulé"), DEBUT_DE_PARTIE("début de partie");
+	 COUP_ANNULE("Coup annulé"), PIECE_INTERDITE("Cet pièce n'est pas à  vous !"), FIN_DE_PARTIE("la partie est terminée"), TEMPS_ECOULE("Temps écoulé"), DEBUT_DE_PARTIE("début de partie"), ECHEC("vous criez echec !"), ECHEC_SUICIDE("attention à l'echec");
 	 
 private String message= "";
 
