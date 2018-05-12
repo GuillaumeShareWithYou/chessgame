@@ -39,7 +39,7 @@ import javafx.stage.WindowEvent;
 
 
 public class View extends Application implements Observer{
-    private   final int LARGEUR_F = 1000;
+    private   final int LARGEUR_F = 1100;
     private   final int HAUTEUR_F = 700;
     private   Echiquier echiquier;
     private   Model model;
